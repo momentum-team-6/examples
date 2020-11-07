@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #DBD3C9;
   font-family: 'Open Sans', sans-serif;
@@ -12,8 +17,12 @@ body {
   font-family: 'Oswald', sans-serif;
 }
 
+.sub-header {
+  margin-bottom: 50px;
+}
+
 .main-content {
-  font-size: 18px;
+  margin: 20px;
 }
 
 .nav-link {
@@ -29,4 +38,27 @@ body {
   width: 75%;
   padding: 15px;
   border: 4px solid #916C80;
+}
+
+/* This is for the error div */
+.more-info {
+  width: 200px;
+  border: 5px solid red;
+}
+
+.plants-in-stock {
+  display: flex;
+  flex-wrap: wrap;
+  /* align-items: flex-start; */
+}
+
+.plant-card {
+  border: 2px solid purple;
+  padding: 10px;
+  margin: 10px;
+  width: 250px;
+}
+
+.plant-card img {
+  width: 200px;
 }
