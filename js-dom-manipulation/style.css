@@ -1,0 +1,41 @@
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.highlight {
+  border: 5px solid yellowgreen;
+}
+
+.button {
+  color: #FFFFFF;
+  font-size: 80px;
+  text-align: center;
+  text-shadow: turquoise;
+  width: 100px;
+  height: 100px;
+  background-color: teal;
+  margin: 5px;
+}
+
+.display {
+  height: 100px;
+  width: 300px;
+  background-color: #D1CFDE;
+  margin: 20px 0;
+  font-size: 30px;
+  color: #000;
+}
+
+
+.result {
+  margin: 20px;
+}
+
+.clear-button {
+  height: 50px;
+  width: 50px;
+  font-size: 45px;
+  border: 2px solid black;
+}
