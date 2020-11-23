@@ -19,8 +19,11 @@ todoList.addEventListener('click', function (event) {
   if (event.target.classList.contains('edit')) {
     editTodo(event.target)
   }
-  if (event.target.id === 'update-todo') {
+  if (event.target.classList.contains('update-todo')) {
     updateTodo(event.target)
+  }
+  if (event.target.classList.contains('cancel')) {
+    hideEditControls(event.target.parentElement)
   }
 })
 
@@ -78,7 +81,7 @@ function deleteTodo (element) {
 
 function updateTodo (element) {
   const todoId = element.parentElement.id
-  const todoText = document.querySelector('#edit-text')
+  const todoText = document.querySelector('.edit-text')
   fetch(`http://localhost:3000/todos/${todoId}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
@@ -93,8 +96,7 @@ function updateTodo (element) {
     .then(function (data) {
       console.log(data)
       // update the item in the DOM
-      element.parentElement.innerHTML = `
-      ${data.item}<i class="ml2 dark-red fas fa-times delete"></i><i class="ml2 fas fa-edit edit"></i>`
+      renderTodoText(element.parentElement, data)
     })
 }
 
@@ -113,24 +115,34 @@ function renderTodoItem (todoObj) {
     'b--dotted',
     'b--black-3'
   )
-  itemEl.innerHTML = `${todoObj.item}<i class="ml2 dark-red fas fa-times delete"></i><i class="ml2 fas fa-edit edit"></i>`
-  if (todoObj.updated_at) {
-    itemEl.innerHTML += `<span>updated at${todoObj.updated_at}</span>`
-  }
+  renderTodoText(itemEl, todoObj)
   todoList.appendChild(itemEl)
   clearInputs()
 }
 
-function editTodo (element) {
-  showEditInput(element)
+function renderTodoText (todoListItem, todoObj) {
+  todoListItem.innerHTML = `${todoObj.item}<i class="ml2 dark-red fas fa-times delete"></i><i class="ml2 fas fa-edit edit"></i>`
 }
 
-function showEditInput (element) {
-  const todoListItem = element.parentElement
-  todoListItem.innerHTML = `
-      <input id="edit-text" type="text" value="${todoListItem.innerText}">
-      <button id='update-todo' class='f6 link dim br-pill p1 ml1 mb2 dib white bg-green'>Save changes</button>
+function editTodo (element) {
+  showEditInput(element.parentElement)
+}
+
+function showEditInput (todoItem) {
+  todoItem.innerHTML = `
+      <input class="edit-text bw0" type="text" value="${todoItem.textContent}">
+      <button class='update-todo f6 link br-pill p1 ml1 mb2 dib white bg-green'>save</button>
+      <button class='cancel f6 link br-pill p1 ml2 mb2 dib white light-purple'>cancel</button>
       `
+}
+
+function hideEditControls (todoItem) {
+  fetch(`http://localhost:3000/todos/${todoItem.id}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      renderTodoText(todoItem, data)
+    })
 }
 
 function clearInputs () {
