@@ -71,13 +71,9 @@ function deleteTodo (element) {
   const todoId = element.parentElement.id
   fetch(`http://localhost:3000/todos/${todoId}`, {
     method: 'DELETE'
+  }).then(function () {
+    element.parentElement.remove()
   })
-    .then(function (res) {
-      return res.json()
-    })
-    .then(function (data) {
-      // remove the item from the DOM
-    })
 }
 
 function updateTodo (element) {
@@ -97,7 +93,8 @@ function updateTodo (element) {
     .then(function (data) {
       console.log(data)
       // update the item in the DOM
-      // clear & hide the input
+      element.parentElement.innerHTML = `
+      ${data.item}<i class="ml2 dark-red fas fa-times delete"></i><i class="ml2 fas fa-edit edit"></i>`
     })
 }
 
@@ -117,38 +114,23 @@ function renderTodoItem (todoObj) {
     'b--black-3'
   )
   itemEl.innerHTML = `${todoObj.item}<i class="ml2 dark-red fas fa-times delete"></i><i class="ml2 fas fa-edit edit"></i>`
+  if (todoObj.updated_at) {
+    itemEl.innerHTML += `<span>updated at${todoObj.updated_at}</span>`
+  }
   todoList.appendChild(itemEl)
   clearInputs()
 }
 
 function editTodo (element) {
-  const todoId = element.parentElement.id
-  showTextInput(element)
+  showEditInput(element)
 }
 
-function showTextInput (element) {
+function showEditInput (element) {
   const todoListItem = element.parentElement
-  const textField = document.createElement('input')
-  textField.type = 'text'
-  textField.id = 'edit-text'
-  textField.classList.add('ml3')
-  todoListItem.appendChild(textField)
-  const saveButton = document.createElement('button')
-  saveButton.innerText = 'Save changes'
-  saveButton.id = 'update-todo'
-  saveButton.classList.add(
-    'f6',
-    'link',
-    'dim',
-    'br-pill',
-    'p1',
-    'ml1',
-    'mb2',
-    'dib',
-    'white',
-    'bg-green'
-  )
-  todoListItem.appendChild(saveButton)
+  todoListItem.innerHTML = `
+      <input id="edit-text" type="text" value="${todoListItem.innerText}">
+      <button id='update-todo' class='f6 link dim br-pill p1 ml1 mb2 dib white bg-green'>Save changes</button>
+      `
 }
 
 function clearInputs () {
