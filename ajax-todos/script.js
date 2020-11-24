@@ -121,7 +121,7 @@ function renderTodoItem (todoObj) {
 }
 
 function renderTodoText (todoListItem, todoObj) {
-  todoListItem.innerHTML = `${todoObj.item}<i class="ml2 dark-red fas fa-times delete"></i><i class="ml2 fas fa-edit edit"></i>`
+  todoListItem.innerHTML = `<span class="dib w-60">${todoObj.item}</span><i class="ml2 dark-red fas fa-times delete"></i><i class="ml3 fas fa-edit edit"></i>`
 }
 
 function editTodo (element) {
