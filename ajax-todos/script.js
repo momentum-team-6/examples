@@ -130,10 +130,11 @@ function editTodo (element) {
 
 function showEditInput (todoItem) {
   todoItem.innerHTML = `
-      <input class="edit-text bw0" type="text" value="${todoItem.textContent}">
-      <button class='update-todo f6 link br-pill p1 ml1 mb2 dib white bg-green'>save</button>
-      <button class='cancel f6 link br-pill p1 ml2 mb2 dib white light-purple'>cancel</button>
+      <input class="edit-text bw0 pl0 outline-0 w-60" type="text" value="${todoItem.textContent}" autofocus>
+      <button class='update-todo f6 link br-pill p1 ml1 dib white bg-green'>save</button>
+      <button class='cancel f6 link br-pill p1 ml2 dib white light-purple'>cancel</button>
       `
+  todoItem.querySelector('input').select()
 }
 
 function hideEditControls (todoItem) {
