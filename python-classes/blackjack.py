@@ -18,19 +18,48 @@ three_of_hearts = Card("❤️", 3)
 
 
 class Deck:
-    def __init__(self, suits, ranks):
+    def __init__(self, suits, ranks, color):
         self.cards = []
         for suit in suits:
             for rank in ranks:
                 new_card = Card(suit, rank)
                 self.cards.append(new_card)
+        self.color = color
+
+    def __str__(self):
+        return f'{self.color} deck'
+
+
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.hand = []
+
+    def __str__(self):
+        return f"{self.name} is holding {self.hand}"
+
+
+class Dealer(Player):
+    def __init__(self):
+        self.name = "Dealer"
+        self.hand = []
+
+
+class Game:
+    def __init__(self, player_name, suits, ranks, deck_color):
+        self.player = Player(player_name)
+        self.dealer = Dealer()
+        self.deck = Deck(suits, ranks, deck_color)
 
 
 # instantiate a deck using the suits and ranks defined by the constants above 
 # and save it to a variable
-my_deck = Deck(SUITS, RANKS)
+# my_deck = Deck(SUITS, RANKS)
 
 
 # print out the human-readable representation of each card you made
-for card in my_deck.cards:
-    print(card)
+# for card in my_deck.cards:
+#     print(card)
+
+# instantiate a new game
+# new_game = Game("Rebecca", SUITS, RANKS, "green")
