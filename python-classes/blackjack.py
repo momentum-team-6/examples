@@ -25,8 +25,12 @@ class Deck:
     def __str__(self):
         return f'{self.color} deck'
     
-    def shuffle(self:
+    def shuffle(self):
         '''rearranges cards in a random order'''
+        pass
+
+    def deal(self):
+        '''gives two cards each to player and dealer'''
         pass
 
 
@@ -50,20 +54,34 @@ class Dealer(Player):
 
 
 class Game:
-    def __init__(self, player_name, suits, ranks, deck_color):
-        self.player = Player(player_name)
+    def __init__(self, deck_color):
+        self.player = Player(self.welcome())
         self.dealer = Dealer()
-        self.deck = Deck(suits, ranks, deck_color)
+        self.deck = Deck(SUITS, RANKS, deck_color)
+        self.winner = None
+
+    def welcome(self):
+        player_name = input("Welcome to blackjack! What is your name? ")
+        return player_name
+
+    def example(self):
+        print("This is just an example of  method")
 
     def turn(self):
         '''player hits until they decide to stay, then dealer hits until they 
-           decide to stay'''
+           decide to stay. Dealer hits until they get 17 or more then stay'''
         pass
 
     def play(self):
         '''gameplay events in order happen here'''
+        '''at the end, a winner is determined'''
         pass
 
+
+new_game = Game('blue')
+print(new_game.dealer, new_game.player)
+new_game.example()
+new_game.deck.shuffle()
 
 
 # to build one card
