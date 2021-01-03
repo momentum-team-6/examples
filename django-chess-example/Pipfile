@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 django = "*"
+pygraphviz = "*"
+django-extensions = "*"
 
 [dev-packages]
 pylint = "*"
