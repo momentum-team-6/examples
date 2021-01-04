@@ -5,9 +5,16 @@ from .forms import ContactForm
 
 # Create your views here.
 def list_contacts(request):
+    #Django ORM
     contacts = Contact.objects.all()
+    # user = request.user
     return render(request, "contacts/list_contacts.html",
                   {"contacts": contacts})
+
+def contact_detail(request):
+    contact = get_object_or_404(Contact, pk=pk)
+    return render(request, {"contact": contact})
+
 
 
 def add_contact(request):
