@@ -21,9 +21,12 @@ def contact_detail(request, pk):
 def add_note(request, pk):
     if request.method == 'POST':
         form = NoteForm(data=request.POST)
+        contact = get_object_or_404(Contact, pk=pk)
         if form.is_valid():
-            form.save()
-            return redirect(to='list_contacts')
+            new_note = form.save(commit=False)
+            new_note.contact = contact
+            new_note.save()
+            return redirect(to='contact_detail', pk=pk)
 
 def add_contact(request):
     if request.method == 'GET':

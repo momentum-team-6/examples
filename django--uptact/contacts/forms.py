@@ -14,6 +14,7 @@ class ContactForm(forms.ModelForm):
             'zip_code',
             'phone_number',
             'email',
+            'birthday',
         ]
 
 class NoteForm(forms.ModelForm):
@@ -21,6 +22,6 @@ class NoteForm(forms.ModelForm):
         model = Note
         fields = [
             'text',
-            'contact',
+            # 'contact',
         ]
 
