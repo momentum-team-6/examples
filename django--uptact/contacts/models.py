@@ -22,6 +22,7 @@ class Contact(models.Model):
     zip_code = USZipCodeField(null=True, blank=True)
     birthday = models.DateField()
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name="contacts")
+    is_family = models.BooleanField(default=False)
 
 
 class Note(models.Model):

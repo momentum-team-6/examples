@@ -69,3 +69,14 @@ def delete_contact(request, pk):
 
     return render(request, "contacts/delete_contact.html",
                   {"contact": contact})
+
+def make_family(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    if not contact.is_family:
+        contact.is_family = True
+        contact.save()
+    else:
+        contact.is_family = False
+        contact.save()
+
+    return redirect(to='list_contacts')

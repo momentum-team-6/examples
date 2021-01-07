@@ -9,7 +9,9 @@
 <div class="flex flex-wrap">
   {% for contact in contacts %}
   <div class="w-33 pa3">
-    <h2><a href="{% url 'contact_detail' pk=contact.pk %}">{{ contact.name }}</a></h2>
+    <h2><a href="{% url 'contact_detail' pk=contact.pk %}">{{ contact.name }}</a><a href="{% url 'make_family' pk=contact.pk %}">{% if contact.is_family %}<i class="fas fa-star"></i>
+      {% else %}<i class="far fa-star"></i>{% endif %}</a>
+    </h2>
 
     <div class="flex">
       <div class="pr2"><i class="icofont-location-pin"></i></div>
