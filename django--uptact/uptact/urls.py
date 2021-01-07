@@ -20,6 +20,7 @@ from contacts import views as contacts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.simple.urls')),
     path('', contacts_views.list_contacts, name='list_contacts'),
     path('contacts/add/', contacts_views.add_contact, name='add_contact'),
     path('contacts/<int:pk>/', 

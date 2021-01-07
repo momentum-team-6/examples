@@ -13,6 +13,9 @@ werkzeug = "*"
 django-environ = "*"
 django-localflavor = "*"
 requests = "*"
+pyparsing = "*"
+pydot = "*"
+django-registration-redux = "*"
 
 [requires]
 python_version = "3.8"
