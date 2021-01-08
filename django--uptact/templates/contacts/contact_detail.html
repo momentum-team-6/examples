@@ -6,7 +6,7 @@
 <p><a href="{% url 'add_contact' %}">Add New Contact</a></p>
 
 <div class="flex flex-wrap">
-  <div class="w-33 pa3">
+  <div class="w-33 pa3" data-contact-id={{contact.pk}}>
     <h2>{{ contact.name }}</h2>
 
     <div class="flex">

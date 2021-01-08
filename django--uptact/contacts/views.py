@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Contact, Note
 from .forms import ContactForm, NoteForm
@@ -75,8 +76,9 @@ def make_family(request, pk):
     if not contact.is_family:
         contact.is_family = True
         contact.save()
+        data = {'change': 'family'}
     else:
         contact.is_family = False
         contact.save()
-
-    return redirect(to='list_contacts')
+        data = {'change': 'not-family'}
+    return JsonResponse(data)
