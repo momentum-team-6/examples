@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for topic in topics %}
+<div class="row valign-wrapper">
+    <div class="col s6 offset-s3 valign">
+      <div class="card amber lighten-3">
+        <div class="card-content indigo-text">
+          <span class="card-title"><a href="{{ topic.get_absolute_url }}/">{{ topic.title }}</a></span>
+          <p></p>
+        </div>
+        <div class="card-action">
+          <a href="#">Thing 1</a>
+          <a href="#">Thing 2</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}
